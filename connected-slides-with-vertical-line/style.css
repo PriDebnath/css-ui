@@ -1,0 +1,171 @@
+    /* common styles starts*/
+
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+    * {
+      transition: 0.2s;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-weight: 400;
+    }
+
+    /* common styles ends*/
+
+
+    .slide-container-1 {
+      min-width: 300px;
+      margin: 1rem;
+      box-shadow: 0.1rem 0.1rem 0.4rem skyblue;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .slide-container-1:hover {
+      box-shadow: 0.1rem 0.1rem 0.2rem skyblue;
+
+    }
+
+    .slide {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* important style for slide container-1 starts */
+
+
+    .svg-container {
+      position: relative;
+      display: flex;
+      height: 100%;
+    }
+
+
+    .vertical-line {
+      width: 0.15rem;
+      height: 100%;
+      background: skyblue;
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
+    .first-line {
+      top: 100%;
+    }
+
+    .last-line {
+      bottom: 100%;
+    }
+
+
+    svg {
+      margin: 1rem;
+      z-index: 1;
+    }
+
+    /* important style for slide container-1 ends */
+
+
+
+
+
+    /*______________________________*/
+
+
+
+
+    .slide-container-2 {
+      box-shadow: 0.1rem 0.1rem 0.4rem #ae5dbb;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      margin: 1rem;
+      min-width: 300px;
+
+    }
+
+    .slide-container-2:hover {
+      box-shadow: 0.1rem 0.1rem 0.2rem #ae5dbb;
+
+    }
+
+    .slide {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* important style for slide container-2 starts */
+
+
+    .svg-container {
+      position: relative;
+      display: flex;
+      height: 100%;
+    }
+
+
+    .line {
+      width: 0.15rem;
+      height: 100%;
+      background: #ae5dbb;
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
+    .slide:first-child .line {
+      top: 100%;
+    }
+
+    .slide:last-child .line {
+      bottom: 100%;
+    }
+
+
+    svg {
+      margin: 1rem;
+      z-index: 1;
+    }
+
+    /* important style for slide container-2 ends */
+
+
+
+
+
+
+
+
+
+    a {
+      position: absolute;
+      bottom: 3vh;
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin: 2rem auto;
+      color: skyblue;
+      box-shadow: 0.1rem 0.1rem 0.4rem skyblue;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+    }
+
+    a:hover {
+      box-shadow: 0.1rem 0.1rem 0.2rem skyblue;
+    }
+    
+    
