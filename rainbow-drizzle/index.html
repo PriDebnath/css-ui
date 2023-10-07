@@ -34,8 +34,7 @@
 </head>
 
 <body>
-
-
+  
   <script>
     let red = () => Math.random() * 255
     let green = () => Math.random() * 255
@@ -44,10 +43,8 @@
 
     const duration = 10
 
-
     let createRaindrop = () => {
       let body = document.querySelector('body');
-
       let drop = document.createElement('i');
 
       // Set raindrop styles here
@@ -62,7 +59,6 @@
 
       body.appendChild(drop)
 
-
       // Removing drops
 
       drop.addEventListener('click', () => {
@@ -72,10 +68,7 @@
       })
 
       setTimeout(() => {}, (duration + 2) * 12000) // same as highest animation duration
-
     }
-
-
 
     let rain = () => {
       createRaindrop()
