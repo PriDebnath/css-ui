@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Author" content="https://www.linkedin.com/in/pritam-debnath-762019239" />
+  <title>Rainbow Drizzle</title>
+  <style type="text/css" media="all">
+    body {
+      height: 100vh;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      position: absolute;
+    }
+
+    i {
+      overflow: hidden;
+      height: 5rem;
+      position: absolute;
+      border-radius: 1rem;
+      animation: rain 1s linear infinite;
+      transform: translateY(-15vh);
+    }
+
+    @keyframes rain {
+      100% {
+        transform: translateY(115vh);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <script>
+    let red = () => Math.random() * 255
+    let green = () => Math.random() * 255
+    let blue = () => Math.random() * 255
+    let alpha = () => Math.random()
+
+    const duration = 10
+
+
+    let createRaindrop = () => {
+      let body = document.querySelector('body');
+
+      let drop = document.createElement('i');
+
+      // Set raindrop styles here
+      drop.style.height = `${Math.random()*5+2}rem`;
+
+      drop.style.width = `${Math.random()*0.5}rem`;
+      drop.style.left = `${Math.random()*100}vw`
+
+      drop.style.background = `linear-gradient(transparent,rgba(${red()},${green()},${blue()},${alpha()}))`;
+
+      drop.style.animationDuration = `${Math.random()*duration+2}s`
+
+      body.appendChild(drop)
+
+
+      // Removing drops
+
+      drop.addEventListener('click', () => {
+        let sayhi = "https://www.linkedin.com/in/pritam-debnath-762019239"
+        window.open(sayhi, '_blank')
+        body.removeChild(drop)
+      })
+
+      setTimeout(() => {}, (duration + 2) * 12000) // same as highest animation duration
+
+    }
+
+
+
+    let rain = () => {
+      createRaindrop()
+    }
+
+    setInterval(rain, 100)
+  </script>
+</body>
+
+</html>
