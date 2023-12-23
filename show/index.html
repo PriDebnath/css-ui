@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Author" content="Pritam Debnath">
+  <meta name="linkedin profile" content="https://www.linkedin.com/in/pritam-debnath-762019239">
+
+  <title>SnowFall</title>
+  <style type="text/css" media="all">
+    body {
+      background: #202561;
+      height: 100vh;
+      display: flex;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    .snow {
+      position: absolute;
+      top: -5vh;
+      animation: fall 10s linear;
+    }
+
+
+    @keyframes fall {
+      0% {
+        transform: : translateY(-5vh)
+      }
+
+      100% {
+        transform: translateY(110vh);
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <script>
+    //22 September 2021
+
+    function creatSnow() {
+      let div = document.createElement('div');
+
+      div.innerText = '❄️';
+      div.style.left = `${Math.random()*100}vw`;
+      div.style.animationDuration = `${5+Math.random()*9}s`;
+      div.style.opacity = Math.random();
+      div.style.fontSize = `${Math.random()*20+10}px`;
+
+      div.classList.add('snow');
+
+      document.body.appendChild(div);
+
+      div.addEventListener('click', () => {
+        div.style.animation = 'pause';
+      })
+
+      let sec = Math.random() * 20000 + 1000;
+
+      setTimeout(function() {
+        document.body.removeChild(div)
+      }, sec)
+
+    }
+
+
+    setInterval(creatSnow, 100);
+  </script>
+
+</body>
+
+</html>
