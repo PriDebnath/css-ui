@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+
+  <title>Review</title>
+  <style type="text/css" media="all">
+    body {
+      background: bisque;
+      transition: 0.8s linear;
+    }
+
+
+    .big-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .underline {
+      background: tomato;
+      height: 3px;
+      width: 50px;
+      margin-bottom: 40px;
+      border-radius: 2px;
+
+
+    }
+
+    .review {
+      width: 70%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      box-shadow: 1px 1px 5px black;
+      background: rgba(78, 78, 78, 0.16);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+
+    .img-container {
+      border-radius: 50%;
+
+      overflow: hidden;
+
+    }
+
+    #image {
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      border-right: 4px solid tomato;
+      transition: .2s linear;
+
+    }
+
+    #image:hover {
+      transform: scale(1.1);
+    }
+
+    #name,
+    #job {
+      padding: 0.3rem;
+      margin: 0rem;
+    }
+
+    .article {
+      text-align: center;
+      width: 80%;
+      padding: 10px;
+    }
+
+    .btn {
+      font-size: 2rem;
+      margin: 1rem;
+    }
+
+    .dark {
+      color: bisque;
+      background: black;
+    }
+
+
+    .checkbox {
+      padding: 5px;
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      border-radius: 50%;
+    }
+
+    label {
+      user-select: none;
+      padding: 20px;
+      background: black;
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      border-radius: 50%;
+    }
+
+    .dark label {
+      background: bisque;
+    }
+
+    input {
+      visibility: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="big-container">
+    <div class="container">
+      <h2>OUR REVIEW</h2>
+      <div class="underline"></div>
+    </div>
+    <div class="review">
+      <div class="img-container">
+        <img id="image" src="" alt="na" />
+      </div>
+      <div class="article">
+        <h2 id="name"></h2>
+        <h4 id="job"></h4>
+        <p id="word"></p>
+        <div class="btn-container">
+          <span class="btn pre">
+            ◀️</span>
+          <span class="btn next">▶️</span>
+        </div>
+        <div class="checkbox">
+          <input class="" type="checkbox" name="checkBtn" id="checkBtn" value="dark" />
+          <label for="checkBtn"></label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    let checkBtn = document.getElementById('checkBtn');
+
+    checkBtn.addEventListener('change', function() {
+
+      document.body.classList.toggle('dark');
+    })
+
+
+    //local data to change review
+
+    let review = [
+      {
+        name: 'Salina watson',
+        image: 'image/person 1.png',
+        work: 'UX / UI',
+        word: 'Exceptional work on the user interface—clean design and easy navigation. Impressed with your skills!"'
+      }
+
+    ,
+
+      {
+        name: 'Edward Johnson',
+        image: 'image/person 2.png',
+        work: 'Web Developer',
+        word: 'Silent guy but his work speaks'
+      }
+    ,
+
+      {
+        name: 'Edam willim',
+        image: 'image/person 3.png',
+        work: 'Android Developer',
+        word: 'Rapid, reliable web development—our site is live and looking sharp'
+      },
+
+
+      {
+        name: 'Elisa gomez',
+        image: 'image/person 1.png',
+        work: 'Business Owner',
+        word: 'Fast-track to a fantastic website. This web development service delivers quality with speed.'
+      }
+
+    ]
+
+    let image = document.getElementById('image');
+    let name = document.getElementById('name');
+    let work = document.getElementById('job');
+    let word = document.getElementById('word');
+
+
+    //button
+    let next = document.querySelector('.next');
+    let pre = document.querySelector('.pre');
+
+    let currentItem = 0;
+
+    function showPerson() {
+      image.src = review[currentItem].image;
+      name.innerText = review[currentItem].name;
+      work.innerText = review[currentItem].work;
+      word.innerText = review[currentItem].word;
+
+    }
+    showPerson()
+
+    next.addEventListener('click', function() {
+
+      currentItem++
+      if (currentItem == review.length - 1) {
+        currentItem = 0
+      }
+      showPerson()
+    })
+
+
+
+    pre.addEventListener('click', function() {
+
+      currentItem--;
+      if (currentItem < 0) {
+        currentItem = review.length - 1
+      }
+      showPerson()
+    })
+
+
+  </script>
+</body>
+
+</html>
