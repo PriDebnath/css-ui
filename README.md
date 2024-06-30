@@ -12,7 +12,7 @@ ________________________________________
 
 ________________________________________
 
-<a href="https://pridebnath.github.io/css-ui/review/)"><img src="images/review.jpg" />
+<a href="https://pridebnath.github.io/css-ui/review"><img src="images/review.jpg" />
 </a>
 
 ________________________________________
