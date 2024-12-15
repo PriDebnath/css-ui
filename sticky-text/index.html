@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      .parent__parent__parent__gradient {
+      .section-gradient-text {
         background-color: #000;
         height: 260vh;
         margin-top: -20vh;
         margin-bottom: -20vh;
       }
 
-      .parent__parent__gradient {
+      .section-gradient-text__sticky-box {
         justify-content: center;
         align-items: center;
         height: 100vh;
@@ -23,7 +23,7 @@
         overflow: hidden;
       }
 
-      .parent__gradient {
+      .gradient-cotainer {
         background-color: #000;
         position: relative;
         overflow: hidden;
@@ -74,13 +74,14 @@
   </head>
   <body>
     <div class="h-100vh"></div>
-    <div class="parent__parent__parent__gradient">
-      <div class="parent__parent__gradient">
-        <div class="parent__gradient">
+
+    <div class="section-gradient-text">
+      <div class="section-gradient-text__sticky-box">
+        <div class="gradient-cotainer">
           <div class="gradient">
             <div class="gradient-text"></div>
           </div>
-          <p class="text">It is your boy pritam</p>
+          <p class="text" contenteditable="true">Made with ❤️ by Pritam</p>
         </div>
       </div>
     </div>
@@ -88,24 +89,46 @@
 
     <script>
       //   // Select the gradient element
-        const gradient = document.querySelector(".gradient");
+      const gradient = document.querySelector(".gradient");
+      const main = document.querySelector(".section-gradient-text");
+
+      let mainTop = main.getBoundingClientRect().top;
+      console.log({ mainTop });
+      mainTop = mainTop + window.scrollY;
+      console.log({ mainTop });
 
       //   // Listen to scroll events
+      loadTextColor();
+
       window.addEventListener("scroll", () => {
         // Calculate the scroll position
-        const scrollY = window.scrollY;
-        console.log({ scrollY, gradient });
+        const scrollY = Math.round(window.scrollY);
 
         // Calculate the new translateY value (adjust the multiplier to your preference)
-        const translateY = Math.min(100, scrollY * 0.1); // Limits translateY to 100%
+        let scrollInsideElement = Math.round(scrollY - mainTop);
+        const translateY = Math.min(100, scrollInsideElement * 0.1); // Limits translateY to 100%
+        console.log({ scrollY, translateY, scrollInsideElement });
+        if (scrollInsideElement > 0) {
+          gradient.style.transform = `translate3d(0px, -${translateY}%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)`;
+        }
 
         // Update the transform style
-        gradient.style.transform = `translate3d(0px, -${translateY}%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)`;
       });
 
+      function loadTextColor() {
+        const scrollY = window.scrollY;
+
+        // Calculate the new translateY value (adjust the multiplier to your preference)
+        let scrollInsideElement = scrollY - mainTop;
+        const translateY = Math.min(100, scrollInsideElement * 0.1); // Limits translateY to 100%
+        console.log({ scrollY, translateY, scrollInsideElement });
+        if (scrollInsideElement > 0) {
+          gradient.style.transform = `translate3d(0px, -${translateY}%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)`;
+        }
+      }
       // Select the parent container and the gradient element
       //   const parent = document.querySelector(
-      //     ".parent__parent__gradient"
+      //     ".section-gradient-text__sticky-box"
       //   );
       //   const gradient = document.querySelector(".gradient");
 
