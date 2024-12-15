@@ -3,13 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Stick text made with ❤️ by Pritam</title>
     <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
       .section-gradient-text {
         background-color: #000;
         height: 260vh;
-        margin-top: -20vh;
-        margin-bottom: -20vh;
+        cursor: pointer;
       }
 
       .section-gradient-text__sticky-box {
@@ -48,7 +52,7 @@
         mix-blend-mode: darken;
         will-change: transform;
         transform-style: preserve-3d;
-        transform: translate3d(0px, 20%, 0px) scale3d(1, 1, 1) rotateX(0deg)
+        transform: translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg)
           rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
       }
 
@@ -68,14 +72,16 @@
 
       .h-100vh {
         height: 100vh;
+        text-align: center;
+        padding: 4rem;
         background: rgb(233, 166, 166);
       }
     </style>
   </head>
   <body>
-    <div class="h-100vh"></div>
+    <div class="h-100vh">Scroll to see the effect</div>
 
-    <div class="section-gradient-text">
+    <section class="section-gradient-text" onclick="changeText()">
       <div class="section-gradient-text__sticky-box">
         <div class="gradient-cotainer">
           <div class="gradient">
@@ -84,41 +90,33 @@
           <p class="text" contenteditable="true">Made with ❤️ by Pritam</p>
         </div>
       </div>
-    </div>
+    </section>
     <div class="h-100vh"></div>
 
     <script>
-      //   // Select the gradient element
-      const gradient = document.querySelector(".gradient");
       const main = document.querySelector(".section-gradient-text");
-
       let mainTop = main.getBoundingClientRect().top;
-      console.log({ mainTop });
-      mainTop = mainTop + window.scrollY;
-      console.log({ mainTop });
+      const gradient = document.querySelector(".gradient");
+      const text = document.querySelector(".text");
 
-      //   // Listen to scroll events
+      mainTop = mainTop + window.scrollY;
+
       loadTextColor();
 
       window.addEventListener("scroll", () => {
-        // Calculate the scroll position
         const scrollY = Math.round(window.scrollY);
 
-        // Calculate the new translateY value (adjust the multiplier to your preference)
         let scrollInsideElement = Math.round(scrollY - mainTop);
-        const translateY = Math.min(100, scrollInsideElement * 0.1); // Limits translateY to 100%
+        const translateY = Math.min(100, scrollInsideElement * 0.1);
         console.log({ scrollY, translateY, scrollInsideElement });
         if (scrollInsideElement > 0) {
           gradient.style.transform = `translate3d(0px, -${translateY}%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)`;
         }
-
-        // Update the transform style
       });
 
       function loadTextColor() {
         const scrollY = window.scrollY;
 
-        // Calculate the new translateY value (adjust the multiplier to your preference)
         let scrollInsideElement = scrollY - mainTop;
         const translateY = Math.min(100, scrollInsideElement * 0.1); // Limits translateY to 100%
         console.log({ scrollY, translateY, scrollInsideElement });
@@ -126,31 +124,14 @@
           gradient.style.transform = `translate3d(0px, -${translateY}%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)`;
         }
       }
-      // Select the parent container and the gradient element
-      //   const parent = document.querySelector(
-      //     ".section-gradient-text__sticky-box"
-      //   );
-      //   const gradient = document.querySelector(".gradient");
 
-      // Listen to scroll events on the parent element
-      //   parent.addEventListener("scroll", () => {
-
-      // // Calculate the scroll position relative to the parent
-      // const scrollTop = parent.scrollTop; // How far the parent is scrolled
-      // const scrollHeight = parent.scrollHeight; // Total scrollable height
-      // const clientHeight = parent.clientHeight; // Visible height of the parent
-      //     const scrollableDistance = scrollHeight - clientHeight;
-
-      //     // Calculate the scroll percentage
-      //     const scrollPercentage = (scrollTop / scrollableDistance) * 100;
-
-      //     // Map the scroll percentage to translateY value
-      //     const translateY = Math.min(100, scrollPercentage); // Adjust the range as needed
-      //     console.log({ scrollTop,scrollHeight,translateY,scrollableDistance });
-
-      //     // Update the transform style
-      //     gradient.style.transform = `translate3d(0px, -${translateY}%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)`;
-      //   });
+      function changeText() {
+        let newText = prompt("Change text to");
+        if (newText) {
+          text.textContent = newText;
+        }
+      }
     </script>
   </body>
 </html>
+
