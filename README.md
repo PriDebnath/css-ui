@@ -5,21 +5,23 @@
 
 ### 🔴 🖼️ Screenshot
 
- <a href="https://pridebnath.github.io/css-ui/connected-slides-with-vertical-line/"><img src="images/connected-slides.jpg" />
-</a>
-________________________________________
-
-<a href="https://pridebnath.github.io/css-ui/rainbow-drizzle/"><img src="images/rainbow-drizzle.jpg" />
+ <a href="https://pridebnath.github.io/css-ui/connected-slides-with-vertical-line/"><img height="480" src="images/connected-slides.jpg" />
 </a>
 
+---
 
-________________________________________
-
-<a href="https://pridebnath.github.io/css-ui/review"><img src="images/review.jpg" />
+<a href="https://pridebnath.github.io/css-ui/rainbow-drizzle/"><img height="480" src="images/rainbow-drizzle.jpg" style="border: 2px solid blue" />
 </a>
 
-________________________________________
+---
 
-<a href="https://pridebnath.github.io/css-ui/skeleton-loading/"><img src="images/skeleton-loader.jpg" />
+<a href="https://pridebnath.github.io/css-ui/review"><img height="480" src="images/review.jpg" />
 </a>
+
+---
+
+<a href="https://pridebnath.github.io/css-ui/skeleton-loading/"><img height="480" src="images/skeleton-loader.jpg" />
+</a>
+
+---
     
