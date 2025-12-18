@@ -1,6 +1,9 @@
+## 🔴 Demo
 
-## Live 🔴
-#### https://pridebnath.github.io/css-ui/
+### 🔴 ↗️ Link
+ https://pridebnath.github.io/css-ui/
+
+### 🔴 🖼️ Screenshot
 
  <a href="https://pridebnath.github.io/css-ui/connected-slides-with-vertical-line/"><img src="images/connected-slides.jpg" />
 </a>
