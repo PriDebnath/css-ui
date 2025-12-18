@@ -10,7 +10,7 @@
 
 ---
 
-<a href="https://pridebnath.github.io/css-ui/rainbow-drizzle/"><img height="480" src="images/rainbow-drizzle.jpg" style="border: 2px solid blue" />
+<a href="https://pridebnath.github.io/css-ui/rainbow-drizzle/"><img height="480" src="images/rainbow-drizzle.jpg"  />
 </a>
 
 ---
