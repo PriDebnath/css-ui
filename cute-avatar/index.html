@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fun zone</title>
+  <meta name="author" content="Pritam Debnath" title="Pritam Debnath">
+  <meta http-equiv="Content-Language" content="en">
+
+
+  <!-- Open Graph (OG) meta tags are widely used to control the appearance of your content when shared on platforms like Facebook, LinkedIn, and Pinterest. -->
+  <meta property="og:title" content="Fun zone by Pritam Debnath">
+  <meta property="og:image"
+    content="https://raw.githubusercontent.com/PriDebnath/css-ui/cute-avatar/refs/heads/main/assets/images/portfolio-v2-fun-zone-demo-2026-07-04.png">
+
+  <meta name="twitter:image"
+    content="https://raw.githubusercontent.com/PriDebnath/css-ui/cute-avatar/refs/heads/main/assets/images/portfolio-v2-fun-zone-demo-2026-07-04.png">
+
+  <!-- Delius font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet">
+
+  <!-- link to css file start-->
+  <link rel="stylesheet" href="./assets/css/cute-avatar.style.css" />
+  <!-- link to css file end-->
+
+
+  <style>
+    :root {
+      --black-with-low-alpha: rgba(0, 0, 0, 0.2);
+      --project-border-color: #dcdcdc;
+      --project-bg-color: #f5f5f5;
+      --skill-padding-y: 0.3rem;
+      --skill-padding-x: 0.8rem;
+      --skill-border-color: #dcdcdc;
+      --body-text-color: #132B3D;
+      --footer-text-color: black;
+
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --project-border-color: #252527;
+        --project-bg-color: #171719;
+        --skill-border-color: #252527;
+        --body-text-color: snow;
+        --footer-text-color: snow;
+
+      }
+    }
+
+    body {
+
+      font-family: "Delius", serif;
+    }
+
+
+    .section-h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-family: "Delius", serif;
+      padding-top: 5rem;
+      color: var(--footer-text-color);
+
+    }
+
+
+
+    .bg-black-blur {
+      background: var(--black-with-low-alpha);
+      backdrop-filter: blur(5px);
+      position: relative;
+      z-index: 2;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap;
+    }
+
+
+    .card {
+      background: var(--project-bg-color);
+      border: 1px solid var(--project-border-color);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+
+    }
+
+
+    .min-width-400px-width-50per {
+      width: 100%;
+      min-width: 400px;
+    }
+
+    @media (max-width: 400px) {
+      .min-width-400px-width-50per {
+        min-width: 200px;
+      }
+    }
+
+    @media (min-width:400px) {
+      .cute-avatar-container {
+        flex-wrap: nowrap;
+      }
+    }
+  </style>
+
+</head>
+
+<body class="bg-black-blur">
+
+  <div class="" style="padding: 1rem 1rem;">
+
+    <!-- Fun zone section starts -->
+    <div class="min-width-400px-width-50per" style="display: flex;flex-direction: column;">
+
+      <!--
+      <h2 class="section-h2" id="fun-zone">Fun zone</h2>
+      -->
+      <div class=" flex flex-wrap card cute-avatar-container" id=" " style="gap: 0;">
+
+
+        <!-- Cute avatar starts -->
+        <section id="cute-avatar-section" class="cute-avatar-section">
+          <div class="cute-avatar-box">
+            <img aria-label="cute-avatar" loading="lazy" src="./assets/images/cute-avatar/cute-avatar.png" />
+            <img aria-label="head-decorator-img" loading="lazy"
+              src="./assets/images/cute-avatar/head-decorator-1-heart-leaves.png" />
+            <img aria-label="decorator-img" loading="lazy"
+              src="./assets/images/cute-avatar/decorator-1-leaves-pot.png" />
+          </div>
+        </section>
+        <!-- Cute avatar ends -->
+
+        <!-- <section id="moveable-box-container"> -->
+        <section class="flex cute-avatar-controller-section" style="width: 100%;">
+          <div class="" aria-label="decorators">
+            <h3>Decorators</h3>
+            <div class="" aria-label="decorators-button-container">
+              <button aria-label="decorator-1-leaves-pot" class="change-decorator-button active">Plant</button>
+              <button aria-label="decorator-2-pink-flower-pot" class="change-decorator-button ">Flower</button>
+              <button aria-label="decorator-3-graveyard-stones" class="change-decorator-button ">Graveyard
+                stones</button>
+            </div>
+          </div>
+          <div class="" aria-label="head-decorators">
+            <h3>Head decorators</h3>
+            <div class="" aria-label="head-decorators-button-container" style="padding: 0.5rem 0;">
+              <button aria-label="head-decorator-3-pony-hair" class="change-decorator-button">Pony hair</button>
+              <button aria-label="head-decorator-2-aki-hair" class="change-decorator-button">Aki hair</button>
+              <button aria-label="head-decorator-1-heart-leaves" class="change-decorator-button active">Heart
+                leaves</button>
+              <button aria-label="head-decorator-4-headphone" class="change-decorator-button">Blue Headphone </button>
+              <button aria-label="head-decorator-5-blue-cap" class="change-decorator-button">
+                Cap
+                <!-- Crown 👑, Horns (demon, dragon), Elf ears, Fire aura 🔥, Ice crown ❄️, Cat ears 🐱, Banana hat, Baseball cap, Headband, Sunglass -->
+              </button>
+              <button aria-label="head-decorator-6-white-headphone" class="change-decorator-button">White Headphone
+              </button>
+              <button aria-label="head-decorator-7-wizard-hat" class="change-decorator-button">Wizard hat</button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+    <!-- Fun zone section ends -->
+
+  </div>
+
+  <script src="./scripts/cute-avatar.script.js" type="module"></script>
+
+</body>
+
+  </html>
