@@ -4,13 +4,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Multi Image Wallpaper</title>
+    <!-- Delius font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+  <title> Wallpaper 1</title>
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: "Nunito", serif;
+      font-weight: 700;
     }
 
     html, body {
@@ -38,40 +44,65 @@
       object-position: center;
     }
 
-    /* Image layers */
     .wallpaper img:nth-child(1) {
       z-index: 1;
     }
 
     .wallpaper img:nth-child(2) {
-      z-index: 2;
-      /* opacity: 0.5; */
-      /* mix-blend-mode: screen; */
-    }
-
-    .wallpaper img:nth-child(3) {
       z-index: 3;
-      /* opacity: 0.3; */
-      /* mix-blend-mode: overlay; */
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .wallpaper img {
-        object-position: center;
-      }
+    /* Clock layer */
+    .clock {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+
+  top: 50%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+
+
+      color: #468323;
+      /* font-family: Arial, sans-serif; */
+      font-size: clamp(60px, 15vw, 160px);
+      /* letter-spacing: 4px; */
+
+      /* text-shadow: 0 3px 20px rgba(0, 0, 0, 0.3); */
+      /* pointer-events: none; */
     }
+
   </style>
 </head>
 
 <body>
 
   <div class="wallpaper">
-       <img src="image/sky.png" alt="Wallpaper layer 1" />
-    <img src="image/ground.png" alt="Wallpaper layer 2" /> 
 
-    <!-- <img src="images/image3.jpg" alt="Wallpaper layer 3" /> -->
+    <img src="image/sky.png" alt="Sky" />
+    <img src="image/ground.png" alt="Ground" />
+
+    <div class="clock" id="clock">
+      00:00
+    </div>
+
   </div>
+
+  <script>
+    const clock = document.getElementById("clock");
+
+    function updateClock() {
+      const now = new Date();
+
+      const hours = String(now.getHours()).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+
+      clock.textContent = `${hours}:${minutes}`;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
 
 </body>
 </html>
