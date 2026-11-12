@@ -27,13 +27,17 @@
     }
 
     .wallpaper {
-      cursor: pointer;
       position: relative;
       width: 100%;
       height: 100vh;
       height: 100dvh;
       overflow: hidden;
       background: #111;
+
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      cursor: grab;
     }
 
     .wallpaper img {
@@ -43,6 +47,7 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
+      pointer-events: none;
     }
 
     .wallpaper img:nth-child(1) {
@@ -53,7 +58,6 @@
       z-index: 3;
     }
 
-    /* Clock layer */
     .clock {
       position: absolute;
       z-index: 2;
@@ -66,13 +70,15 @@
       font-size: clamp(60px, 15vw, 160px);
       font-weight: 700;
       white-space: nowrap;
+
+      pointer-events: none;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="wallpaper">
+  <div class="wallpaper" id="wallpaper">
 
     <img src="image/sky.png" alt="Sky" />
     <img src="image/ground.png" alt="Ground" />
@@ -83,33 +89,12 @@
 
   <script>
     const clock = document.getElementById("clock");
+    const wallpaper = document.getElementById("wallpaper");
+
     const params = new URLSearchParams(window.location.search);
 
-const wallpaper = document.querySelector(".wallpaper");
-
-// Click anywhere on the wallpaper to move the clock
-wallpaper.addEventListener("click", (e) => {
-  const rect = wallpaper.getBoundingClientRect();
-
-  const left = ((e.clientX - rect.left) / rect.width) * 100;
-  const top = ((e.clientY - rect.top) / rect.height) * 100;
-
-  clock.style.left = `${left}%`;
-  clock.style.top = `${top}%`;
-
-  // Update URL without reloading
-  const url = new URL(window.location.href);
-
-  url.searchParams.set("top", `${top.toFixed(2)}%`);
-  url.searchParams.set("left", `${left.toFixed(2)}%`);
-  // url.searchParams.set("fontWeight", `700`);
-  // url.searchParams.set("fontSize", "clamp(60px, 15vw, 160px)");
-
-  window.history.replaceState({}, "", url);
-});
-
-    // Apply URL customization only when value is not empty
-    function setStyle(property, param, defaultValue) {
+    // Apply URL settings (empty values use defaults)
+    function applyURLStyle(property, param, defaultValue) {
       const value = params.get(param);
 
       clock.style[property] =
@@ -118,12 +103,167 @@ wallpaper.addEventListener("click", (e) => {
           : defaultValue;
     }
 
-    // Default values
-    setStyle("fontSize", "size", "clamp(60px, 15vw, 160px)");
-    setStyle("fontWeight", "weight", "700");
-    setStyle("top", "top", "50%");
-    setStyle("left", "left", "52%");
+    applyURLStyle("fontSize", "size", "clamp(60px, 15vw, 160px)");
+    applyURLStyle("fontWeight", "weight", "700");
+    applyURLStyle("top", "top", "50%");
+    applyURLStyle("left", "left", "52%");
 
+    // Pointer tracking
+    const pointers = new Map();
+    let gesture = null;
+
+    function getClockCenter() {
+      const rect = clock.getBoundingClientRect();
+      const parent = wallpaper.getBoundingClientRect();
+
+      return {
+        x: rect.left + rect.width / 2 - parent.left,
+        y: rect.top + rect.height / 2 - parent.top
+      };
+    }
+
+    function getMidpoint(a, b) {
+      return {
+        x: (a.x + b.x) / 2,
+        y: (a.y + b.y) / 2
+      };
+    }
+
+    function getDistance(a, b) {
+      return Math.hypot(b.x - a.x, b.y - a.y);
+    }
+
+    // Start gesture
+    function startGesture() {
+      const points = [...pointers.values()];
+      const center = getClockCenter();
+
+      if (points.length === 1) {
+        gesture = {
+          type: "move",
+          startPointer: points[0],
+          startCenter: center
+        };
+      }
+
+      if (points.length >= 2) {
+        const a = points[0];
+        const b = points[1];
+
+        gesture = {
+          type: "pinch",
+          startMidpoint: getMidpoint(a, b),
+          startDistance: Math.max(1, getDistance(a, b)),
+          startCenter: center,
+          startSize: parseFloat(getComputedStyle(clock).fontSize)
+        };
+      }
+    }
+
+    // Update clock position
+    function updateClockPosition(x, y) {
+      const rect = wallpaper.getBoundingClientRect();
+
+      const left = (x / rect.width) * 100;
+      const top = (y / rect.height) * 100;
+
+      clock.style.left = `${left}%`;
+      clock.style.top = `${top}%`;
+    }
+
+    // Pointer down
+    wallpaper.addEventListener("pointerdown", (e) => {
+      if (pointers.size >= 2) return;
+
+      wallpaper.setPointerCapture(e.pointerId);
+
+      pointers.set(e.pointerId, {
+        x: e.clientX,
+        y: e.clientY
+      });
+
+      startGesture();
+    });
+
+    // Pointer move
+    wallpaper.addEventListener("pointermove", (e) => {
+      if (!pointers.has(e.pointerId)) return;
+
+      pointers.set(e.pointerId, {
+        x: e.clientX,
+        y: e.clientY
+      });
+
+      const points = [...pointers.values()];
+
+      if (!gesture) return;
+
+      // One finger: Move
+      if (gesture.type === "move" && points.length === 1) {
+        const x = gesture.startCenter.x +
+          (points[0].x - gesture.startPointer.x);
+
+        const y = gesture.startCenter.y +
+          (points[0].y - gesture.startPointer.y);
+
+        updateClockPosition(x, y);
+      }
+
+      // Two fingers: Move + Resize
+      if (gesture.type === "pinch" && points.length === 2) {
+        const midpoint = getMidpoint(points[0], points[1]);
+        const distance = getDistance(points[0], points[1]);
+
+        // Move using midpoint
+        const x = gesture.startCenter.x +
+          (midpoint.x - gesture.startMidpoint.x);
+
+        const y = gesture.startCenter.y +
+          (midpoint.y - gesture.startMidpoint.y);
+
+        updateClockPosition(x, y);
+
+        // Pinch to resize
+        const scale = distance / gesture.startDistance;
+
+        const newSize = Math.min(
+          400,
+          Math.max(20, gesture.startSize * scale)
+        );
+
+        clock.style.fontSize = `${newSize}px`;
+      }
+    });
+
+    // Save settings to URL
+    function updateURL() {
+      const url = new URL(window.location.href);
+
+      url.searchParams.set("top", clock.style.top);
+      url.searchParams.set("left", clock.style.left);
+      url.searchParams.set("size", clock.style.fontSize);
+
+      window.history.replaceState({}, "", url);
+    }
+
+    // Pointer release / cancellation
+    function endPointer(e) {
+      if (!pointers.has(e.pointerId)) return;
+
+      pointers.delete(e.pointerId);
+
+      if (pointers.size === 0) {
+        gesture = null;
+        updateURL();
+      } else {
+        startGesture();
+      }
+    }
+
+    wallpaper.addEventListener("pointerup", endPointer);
+    wallpaper.addEventListener("pointercancel", endPointer);
+
+    // Live clock
     function updateClock() {
       const now = new Date();
 
@@ -135,6 +275,7 @@ wallpaper.addEventListener("click", (e) => {
 
     updateClock();
     setInterval(updateClock, 1000);
+
   </script>
 
 </body>
