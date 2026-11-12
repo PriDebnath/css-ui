@@ -4,11 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Delius font -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
-  <title> Wallpaper 1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+
+  <title>Wallpaper 1</title>
 
   <style>
     * {
@@ -16,7 +17,6 @@
       padding: 0;
       box-sizing: border-box;
       font-family: "Nunito", serif;
-      font-weight: 700;
     }
 
     html, body {
@@ -27,6 +27,7 @@
     }
 
     .wallpaper {
+      cursor: pointer;
       position: relative;
       width: 100%;
       height: 100vh;
@@ -56,22 +57,16 @@
     .clock {
       position: absolute;
       z-index: 2;
-      inset: 0;
 
-  top: 50%;
-  left: 52%;
-  transform: translate(-50%, -50%);
-
+      top: 50%;
+      left: 52%;
+      transform: translate(-50%, -50%);
 
       color: #468323;
-      /* font-family: Arial, sans-serif; */
       font-size: clamp(60px, 15vw, 160px);
-      /* letter-spacing: 4px; */
-
-      /* text-shadow: 0 3px 20px rgba(0, 0, 0, 0.3); */
-      /* pointer-events: none; */
+      font-weight: 700;
+      white-space: nowrap;
     }
-
   </style>
 </head>
 
@@ -82,14 +77,52 @@
     <img src="image/sky.png" alt="Sky" />
     <img src="image/ground.png" alt="Ground" />
 
-    <div class="clock" id="clock">
-      00:00
-    </div>
+    <div class="clock" id="clock">00:00</div>
 
   </div>
 
   <script>
     const clock = document.getElementById("clock");
+    const params = new URLSearchParams(window.location.search);
+
+const wallpaper = document.querySelector(".wallpaper");
+
+// Click anywhere on the wallpaper to move the clock
+wallpaper.addEventListener("click", (e) => {
+  const rect = wallpaper.getBoundingClientRect();
+
+  const left = ((e.clientX - rect.left) / rect.width) * 100;
+  const top = ((e.clientY - rect.top) / rect.height) * 100;
+
+  clock.style.left = `${left}%`;
+  clock.style.top = `${top}%`;
+
+  // Update URL without reloading
+  const url = new URL(window.location.href);
+
+  url.searchParams.set("top", `${top.toFixed(2)}%`);
+  url.searchParams.set("left", `${left.toFixed(2)}%`);
+  // url.searchParams.set("fontWeight", `700`);
+  // url.searchParams.set("fontSize", "clamp(60px, 15vw, 160px)");
+
+  window.history.replaceState({}, "", url);
+});
+
+    // Apply URL customization only when value is not empty
+    function setStyle(property, param, defaultValue) {
+      const value = params.get(param);
+
+      clock.style[property] =
+        value !== null && value.trim() !== ""
+          ? value
+          : defaultValue;
+    }
+
+    // Default values
+    setStyle("fontSize", "size", "clamp(60px, 15vw, 160px)");
+    setStyle("fontWeight", "weight", "700");
+    setStyle("top", "top", "50%");
+    setStyle("left", "left", "52%");
 
     function updateClock() {
       const now = new Date();
