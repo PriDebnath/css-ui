@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fun zone</title>
+  <meta name="author" content="Pritam Debnath" title="Pritam Debnath">
+  <meta http-equiv="Content-Language" content="en">
+
+
+  <!-- Open Graph (OG) meta tags are widely used to control the appearance of your content when shared on platforms like Facebook, LinkedIn, and Pinterest. -->
+  <meta property="og:title" content="Fun zone by Pritam Debnath">
+  <meta property="og:image"
+    content="https://raw.githubusercontent.com/PriDebnath/css-ui/cute-avatar/refs/heads/main/assets/images/portfolio-v2-fun-zone-demo-2026-07-04.png">
+
+  <meta name="twitter:image"
+    content="https://raw.githubusercontent.com/PriDebnath/css-ui/cute-avatar/refs/heads/main/assets/images/portfolio-v2-fun-zone-demo-2026-07-04.png">
+
+  <!-- Delius font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet">
+
+  <!-- link to css file start-->
+  <link rel="stylesheet" href="./assets/css/cute-avatar.style.css" />
+  <!-- link to css file end-->
+
+
+  <style>
+    :root {
+      --black-with-low-alpha: rgba(0, 0, 0, 0.2);
+      --project-border-color: #dcdcdc;
+      --project-bg-color: #f5f5f5;
+      --skill-padding-y: 0.3rem;
+      --skill-padding-x: 0.8rem;
+      --skill-border-color: #dcdcdc;
+      --body-text-color: #132B3D;
+      --footer-text-color: black;
+
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --project-border-color: #252527;
+        --project-bg-color: #171719;
+        --skill-border-color: #252527;
+        --body-text-color: snow;
+        --footer-text-color: snow;
+
+      }
+    }
+
+    body, button {
+
+      font-family: "Delius", serif;
+    }
+
+
+    .section-h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-family: "Delius", serif;
+      padding-top: 5rem;
+      color: var(--footer-text-color);
+
+    }
+
+
+
+    .bg-black-blur {
+      background: var(--black-with-low-alpha);
+      backdrop-filter: blur(5px);
+      position: relative;
+      z-index: 2;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap;
+    }
+
+
+    .card {
+      background: var(--project-bg-color);
+      border: 1px solid var(--project-border-color);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+
+    }
+
+
+    .min-width-400px-width-50per {
+      width: 100%;
+      min-width: 400px;
+    }
+
+    @media (max-width: 400px) {
+      .min-width-400px-width-50per {
+        min-width: 200px;
+      }
+    }
+
+    @media (min-width:400px) {
+      .cute-avatar-container {
+        flex-wrap: nowrap;
+      }
+    }
+  </style>
+
+</head>
+
+<body >
+    <h1>Hi</h1>
+  <script src="./scripts/script.js" type="module"></script>
+
+</body>
+
+  </html>
